@@ -1,0 +1,20 @@
+//https://leetcode.com/problems/group-anagrams/description/
+
+//Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+//An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, ArrayList<String>> map = new HashMap<>();
+        for (int i = 0; i < strs.length; i++) {
+            char[] chararray = strs[i].toCharArray();
+            Arrays.sort(chararray);
+            String word = new String(chararray);
+            if (!map.containsKey(word)) {
+                map.put(word, new ArrayList<String>());
+            } 
+            map.get(word).add(strs[i]);
+        }
+        return new ArrayList<>(map.values());
+    }
+}
