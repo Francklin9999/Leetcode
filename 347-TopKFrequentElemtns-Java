@@ -1,0 +1,30 @@
+//https://leetcode.com/problems/top-k-frequent-elements/
+
+//Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        int[] result = new int[k];
+        HashMap<Integer, Integer> map = new HashMap<>();
+        PriorityQueue<Pair<Integer, Integer>> minHeap = new PriorityQueue<>(
+            (a, b) -> a.getValue() - b.getValue());
+
+        for(int i = 0; i < nums.length; i++) {
+            if(!map.containsKey(nums[i])) {
+                map.put(nums[i], 1);
+            } else {
+                map.put(nums[i], map.get(nums[i]) + 1);
+            }
+        }
+
+        for(Map.Entry<Integer, Integer> value : map.entrySet()) {
+            minHeap.add(new Pair<>(value.getKey(), value.getValue()));
+            if(minHeap.size() > k) minHeap.poll();
+        }
+
+        for(int j = 0; j < k; j++) {
+            result[j] = minHeap.poll().getKey();
+        }
+        return result;
+    }
+}
