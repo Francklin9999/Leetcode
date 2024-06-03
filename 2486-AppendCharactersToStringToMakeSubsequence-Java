@@ -1,0 +1,26 @@
+//https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/?envType=daily-question&envId=2024-06-03
+
+//You are given two strings s and t consisting of only lowercase English letters.
+//Return the minimum number of characters that need to be appended to the end of s so that t becomes a subsequence of s.
+//A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.
+
+class Solution {
+    public int appendCharacters(String s, String t) {
+        int sLength = s.length();
+        int tLength = t.length();
+
+        int l = 0;
+        int r = 0;
+
+        while(l < sLength && r < tLength) {
+            if(s.charAt(l) == t.charAt(r)) {
+                l++;
+                r++;
+            } else {
+                l++;
+            }
+        }
+
+        return tLength - r;
+    }
+}
