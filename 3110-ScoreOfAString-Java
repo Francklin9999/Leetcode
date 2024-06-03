@@ -1,0 +1,16 @@
+//https://leetcode.com/problems/score-of-a-string/description/?envType=daily-question&envId=2024-06-01
+
+//You are given a string s. The score of a string is defined as the sum of the absolute difference between the ASCII values of adjacent characters.
+//Return the score of s.
+
+class Solution {
+    public int scoreOfString(String s) {
+        int result = 0;
+
+        for(int i = 0; i < s.length() - 1; i++) {
+            result += Math.abs(s.charAt(i) - s.charAt(i + 1));
+        }
+
+        return result;
+    }
+}
